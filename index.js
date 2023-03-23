@@ -28,6 +28,7 @@ function congratsYouWin() {
   if (Number(guessInputField.value) === winningNum) {
     winner = true
     hintPara.textContent = "Congrats you are a winner!"
+    document.querySelector(".container").style.backgroundColor = "#5CF35C"
   } else {
     winner = false
     hintPara.textContent = "guess again"
@@ -38,8 +39,11 @@ let guessInputField = document.querySelector("#guessField");
 let reset = document.querySelector("#reset");
 let hintPara = document.querySelector("#hintPara");
 
+let hint = document.querySelector("#hint")
+
 //CREATES WINNING NUMBER
 let winningNum = Math.floor(Math.random() * 100);
+let hintNum = Math.floor(Math.random() * winningNum)
 console.log(winningNum);
 
 //GETS BOXS
@@ -89,7 +93,7 @@ reset.addEventListener("click", function () {
   //CHANGES TOP TITLE BACK
   hintPara.textContent = "START GUESSING...";
   //MAKES NEW NUMBER
-  winningNum = Math.floor(Math.random() * 100);
+ 
   //MAKES THE GUESS BOXS BACK TO NOTHING
   guessOne.textContent = "-";
   guessTwo.textContent = "-";
@@ -102,6 +106,41 @@ reset.addEventListener("click", function () {
   executedThree = true;
   executedFour = true;
   executedFive = true;
+  document.querySelector(".container").style.backgroundColor = "#EC85AD"
 });
+
+
+guessInputField.addEventListener("keypress", function(event){
+    if(guessInputField.value.length > 0 && event.keyCode === 13) {
+        console.log("you guessed");
+        congratsYouWin()
+        if (executedOne && !winner) {
+          guessOne.innerHTML = guessInputField.value;
+          executedOne = false; 
+        } else if (executedTwo && !winner) {
+          guessTwo.innerHTML = guessInputField.value;
+          executedTwo = false;
+        } else if (executedThree && !winner) {
+          guessThree.innerHTML = guessInputField.value;
+          executedThree = false;
+        } else if (executedFour && !winner) {
+          guessFour.innerHTML = guessInputField.value;
+          executedFour = false;
+        } else if (executedFive && !winner) {
+          guessFive.innerHTML = guessInputField.value;
+          executedFive = false;
+        }
+        if (executedFive === false && !winner) {
+          hintPara.textContent = `YOU LOSE THE WINNING NUMBER WAS ${winningNum}`;
+        }
+    }
+})
+
+
+hint.addEventListener("click", function() {
+    console.log("you hinted");
+    hintPara.textContent = `HINT: ${Math.floor(Math.random() * 100)} ${winningNum} ${Math.floor(Math.random() * 100)} ${Math.floor(Math.random() * 100)}`
+})
+
 
 
