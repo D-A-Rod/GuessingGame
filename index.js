@@ -26,33 +26,35 @@ let winner;
 
 function hotCold() {
   let difference = winningNum - guessInputField.value;
-  if (difference <= 0 && difference <= 5) {
+
+  //for positive numbers
+  if (difference >= 0 && difference <= 5) {
     hintPara.textContent = "You're super hot!";
-  } else if (difference <= 0 && difference <= 10) {
+  } else if (difference >= 0 && difference <= 10) {
     hintPara.textContent = "You're warming up!";
-  } else if (difference <= 0 && difference <= 15) {
+  } else if (difference >= 0 && difference <= 15) {
     hintPara.textContent = "Youre Luke Warm";
-  } else if (difference <= 0 && difference >= 16) {
+  } else if (difference >= 0 && difference <= 15) {
     hintPara.textContent = "You are getting cooler";
-  } else if (difference >= 0 && difference >= 21) {
+  } else if (difference >= 0 && difference <= 21) {
     hintPara.textContent = "You're Cold";
   }
 
 
-/*
-  if (difference >= 0 && difference >= -5) {
+  //for negative numbers
+  if (difference <= 0 && difference >= -5) {
     hintPara.textContent = "You're super hot!";
-  } else if (difference >= 0 && difference >= -10) {
+  } else if (difference <= 0 && difference >= -10) {
     hintPara.textContent = "You're warming up!";
-  } else if (difference >= 0 && difference >= -15) {
+  } else if (difference <= 0 && difference >= -15) {
     hintPara.textContent = "Youre Luke Warm";
-  } else if (difference >= 0 && difference >= -16) {
+  } else if (difference <= 0 && difference >= -16) {
     hintPara.textContent = "You are getting cooler";
-  } else if (difference >= 0 && difference <= -21) {
+  } else if (difference <= 0 && difference <= -21) {
     hintPara.textContent = "You're Cold";
   }
 
-*/
+
 
 }
 
